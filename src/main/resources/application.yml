@@ -7,3 +7,4 @@ spring:
       username: fintech
       password: fintech1!
       driver-class-name: org.postgresql.Driver
+debug: true

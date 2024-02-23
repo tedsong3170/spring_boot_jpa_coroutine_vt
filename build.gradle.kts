@@ -38,6 +38,8 @@ dependencies {
 //  developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+  implementation("org.slf4j:slf4j-api:2.0.12")
+
 
   runtimeOnly("org.postgresql:postgresql")
   annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
