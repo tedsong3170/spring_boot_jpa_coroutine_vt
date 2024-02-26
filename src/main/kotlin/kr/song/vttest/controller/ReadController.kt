@@ -13,7 +13,7 @@ class ReadController {
   @GetMapping("/test")
   suspend fun getTest(): User
   {
-    logger.info("getTest")
+    logger.info("thread Name : ${Thread.currentThread().threadId()} getTest")
 
     val user = User(
       1,

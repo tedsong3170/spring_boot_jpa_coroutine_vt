@@ -3,22 +3,24 @@ package kr.song.vttest.config
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.asCoroutineDispatcher
-import org.slf4j.MDC
-import org.springframework.core.task.TaskDecorator
+import org.apache.coyote.ProtocolHandler
+import org.springframework.boot.web.embedded.tomcat.TomcatProtocolHandlerCustomizer
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import java.util.concurrent.Executors
 
 /**
  * HTTP 요청은 Virtual Thread를 통해 처리
  */
-//@Configuration
-//class TomcatConfiguration {
-//  @Bean
-//  fun protocolHandlerVirtualThreadExecutorCustomizer(): TomcatProtocolHandlerCustomizer<*>? {
-//    return TomcatProtocolHandlerCustomizer<ProtocolHandler> { protocolHandler: ProtocolHandler ->
-//      protocolHandler.executor = Executors.newVirtualThreadPerTaskExecutor()
-//    }
-//  }
-//}
+@Configuration
+class TomcatConfiguration {
+  @Bean
+  fun protocolHandlerVirtualThreadExecutorCustomizer(): TomcatProtocolHandlerCustomizer<*>? {
+    return TomcatProtocolHandlerCustomizer<ProtocolHandler> { protocolHandler: ProtocolHandler ->
+      protocolHandler.executor = Executors.newVirtualThreadPerTaskExecutor()
+    }
+  }
+}
 
 /**
  * 비동기 처리를 위한 설정
@@ -36,21 +38,21 @@ import java.util.concurrent.Executors
 //    return taskExecutor
 //  }
 //}
-
-class LoggingTaskDecorator : TaskDecorator {
-
-  override fun decorate(task: Runnable): Runnable {
-
-    val callerThreadContext = MDC.getCopyOfContextMap()
-
-    return Runnable {
-      callerThreadContext?.let {
-        MDC.setContextMap(it)
-      }
-      task.run()
-    }
-  }
-}
+//
+//class LoggingTaskDecorator : TaskDecorator {
+//
+//  override fun decorate(task: Runnable): Runnable {
+//
+//    val callerThreadContext = MDC.getCopyOfContextMap()
+//
+//    return Runnable {
+//      callerThreadContext?.let {
+//        MDC.setContextMap(it)
+//      }
+//      task.run()
+//    }
+//  }
+//}
 
 /**
  * Virtual Thread Coroutine Dispatcher
