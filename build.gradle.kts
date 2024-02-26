@@ -30,7 +30,7 @@ extra["snippetsDir"] = file("build/generated-snippets")
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("org.springframework.boot:spring-boot-starter-security")
+//  implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("org.springframework.boot:spring-boot-starter-web")
 //  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 //  implementation("org.flywaydb:flyway-core")
@@ -38,6 +38,7 @@ dependencies {
 //  developmentOnly("org.springframework.boot:spring-boot-docker-compose")
 
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
   implementation("org.slf4j:slf4j-api:2.0.12")
 
 
@@ -46,7 +47,7 @@ dependencies {
   testImplementation("org.springframework.boot:spring-boot-starter-test")
   testImplementation("org.springframework.boot:spring-boot-testcontainers")
   testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-  testImplementation("org.springframework.security:spring-security-test")
+//  testImplementation("org.springframework.security:spring-security-test")
   testImplementation("org.testcontainers:junit-jupiter")
   testImplementation("org.testcontainers:postgresql")
 }
